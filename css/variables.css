@@ -1,0 +1,15 @@
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+  --accent: #007AFF;
+  --red: #FF5F57;
+  --yellow: #FEBC2E;
+  --green: #28C840;
+  --text: #1d1d1f;
+  --text2: #86868b;
+  --border: rgba(0,0,0,0.1);
+  --glass: rgba(255,255,255,0.72);
+  --glass-dark: rgba(30,30,30,0.75);
+  --shadow: 0 22px 70px 4px rgba(0,0,0,0.28);
+  --r: 12px;
+  --font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
+}

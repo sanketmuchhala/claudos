@@ -1,0 +1,94 @@
+/* ===== WINDOW SYSTEM ===== */
+.win {
+  position: absolute;
+  background: rgba(236,236,236,0.92);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 12px;
+  box-shadow: var(--shadow), 0 0 0 .5px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  min-height: 180px;
+  animation: winOpen .3s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes winOpen {
+  from { transform: scale(.88); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.win.closing { animation: winClose .2s forwards; }
+@keyframes winClose { to { transform: scale(.88); opacity: 0; } }
+
+.win.minimizing { animation: winMin .4s forwards; }
+@keyframes winMin { to { transform: scale(.1) translateY(100vh); opacity: 0; } }
+
+/* Title Bar */
+.titlebar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  cursor: grab;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.titlebar:active { cursor: grabbing; }
+
+.tl { display: flex; gap: 7px; z-index: 2; }
+
+.tb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: .5px solid rgba(0,0,0,0.1);
+  position: relative;
+}
+.tb:hover { filter: brightness(.85); }
+.tc { background: #FF5F57; }
+.tm { background: #FEBC2E; }
+.tx { background: #28C840; }
+
+.tb::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.4);
+  opacity: 0;
+}
+.titlebar:hover .tc::after { content: '✕'; opacity: 1; font-size: 9px; }
+.titlebar:hover .tm::after { content: '−'; opacity: 1; font-size: 14px; line-height: 10px; }
+.titlebar:hover .tx::after { content: '⤢'; opacity: 1; font-size: 10px; }
+
+.wtitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.8);
+  white-space: nowrap;
+}
+
+/* Window Body */
+.wbody { flex: 1; overflow: auto; position: relative; }
+.wbody::-webkit-scrollbar { width: 6px; }
+.wbody::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+
+/* Resize Handle */
+.wresize {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+}

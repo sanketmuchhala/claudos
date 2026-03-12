@@ -1,0 +1,23 @@
+/* ===== RESPONSIVE SCALING =====
+ *
+ * CloudOS uses a transform-based scaling system (js/scaling.js) to
+ * maintain a pixel-perfect macOS look across all viewport sizes.
+ *
+ * For viewports >= 900px : renders at native viewport size
+ * For viewports <  900px : renders at 900px and scales down via CSS transform
+ *
+ * Target display areas (inside iframe):
+ *   Desktop  (1440px viewport) → 912px frame  → ~859×537px
+ *   Laptop   (1280px viewport) → 912px frame  → ~859×537px
+ *   Tablet   (1024px viewport) → ~901px frame → ~849×530px
+ *   Mobile   (390px viewport)  → ~374px frame → ~352×220px
+ *   Mobile   (375px viewport)  → ~360px frame → ~339×212px
+ *
+ * These media queries handle fine-tuning only.
+ * The JS scaling handles the main viewport transform.
+ */
+
+/* Tablet: tighten notification center */
+@media (max-width: 920px) {
+  #nc { width: 280px; }
+}

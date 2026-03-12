@@ -1,0 +1,46 @@
+/* ===== LOGIN SCREEN ===== */
+#login {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.lav {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.lname { font-size: 22px; font-weight: 600; margin-bottom: 14px; }
+
+.linput {
+  width: 220px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 14px;
+  font-family: var(--font);
+  outline: none;
+  text-align: center;
+}
+.linput::placeholder { color: rgba(255,255,255,0.4); }
+
+.lhint { font-size: 12px; opacity: .4; margin-top: 12px; }
+.ltime { position: absolute; top: 55px; font-size: 72px; font-weight: 200; letter-spacing: -2px; }
+.ldate { position: absolute; top: 140px; font-size: 18px; opacity: .8; }
