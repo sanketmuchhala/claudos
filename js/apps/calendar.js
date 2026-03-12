@@ -104,7 +104,7 @@ function showEventModal(dateStr) {
     '<div class="modal-content">' +
       '<div class="modal-header">' +
         '<h3>New Event</h3>' +
-        '<button class="modal-close" onclick="this.closest(\\'.event-modal\\').remove()">✕</button>' +
+        '<button class="modal-close" onclick="this.closest(\'.event-modal\').remove()">✕</button>' +
       '</div>' +
       '<div class="modal-body">' +
         '<label>Date</label>' +
@@ -115,7 +115,7 @@ function showEventModal(dateStr) {
         '<textarea id="event-desc" placeholder="Event description" rows="3"></textarea>' +
       '</div>' +
       '<div class="modal-footer">' +
-        '<button class="btn-cancel" onclick="this.closest(\\'.event-modal\\').remove()">Cancel</button>' +
+        '<button class="btn-cancel" onclick="this.closest(\'.event-modal\').remove()">Cancel</button>' +
         '<button class="btn-save" onclick="saveEvent(\'' + targetDate + '\')">Save</button>' +
       '</div>' +
     '</div>';
