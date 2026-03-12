@@ -39,12 +39,11 @@ function openURL(url) {
   // Open Safari with URL
   openApp('safari');
   setTimeout(function() {
-    const urlBar = document.querySelector('.surl');
-    if (urlBar) {
+    const urlBar = document.getElementById('surl');
+    const iframe = document.getElementById('sfr');
+    if (urlBar && iframe) {
       urlBar.value = url;
-      // Trigger navigation in Safari app
-      const event = new KeyboardEvent('keydown', { key: 'Enter' });
-      urlBar.dispatchEvent(event);
+      iframe.src = url;
     }
   }, 250);
   showNotificationBanner('Safari', 'Opening ' + url, '🧭', 2000);
