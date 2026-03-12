@@ -57,28 +57,42 @@ function closeWin(id) {
 function minWin(id) {
   const w = wins[id];
   if (!w) return;
-  w.el.classList.add('minimizing');
-  setTimeout(() => {
+
+  // Use genie minimize animation
+  genieMinimize(w.el, w.app, () => {
     w.el.style.display = 'none';
     w.el.classList.remove('minimizing');
     w.min = true;
-  }, 400);
+  });
 }
 
 function maxWin(id) {
   const w = wins[id];
   if (!w) return;
+
   if (w.max) {
-    w.el.style.cssText = w.prev;
-    w.el.style.zIndex = zTop;
-    w.max = false;
+    // Restore from maximize
+    smoothRestore(w.el, w.prev, () => {
+      w.el.style.zIndex = zTop;
+      w.max = false;
+    });
   } else {
+    // Maximize window
     w.prev = w.el.style.cssText;
     const root = document.getElementById('os-root');
     const rw = root.offsetWidth;
     const rh = root.offsetHeight;
-    w.el.style.cssText = 'left:0;top:28px;width:' + rw + 'px;height:' + (rh - 96) + 'px;z-index:' + zTop + ';border-radius:0';
-    w.max = true;
+
+    smoothMaximize(w.el, {
+      left: 0,
+      top: 28,
+      width: rw,
+      height: rh - 96,
+      borderRadius: '0px'
+    }, () => {
+      w.el.style.zIndex = zTop;
+      w.max = true;
+    });
   }
 }
 

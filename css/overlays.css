@@ -105,3 +105,89 @@
 }
 .ci:hover { background: var(--accent); color: #fff; }
 .csep { height: 1px; background: rgba(0,0,0,0.08); margin: 4px 8px; }
+
+/* ===== APP SWITCHER (Cmd+Tab) ===== */
+#app-switcher {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#app-switcher.visible {
+  opacity: 1;
+}
+
+.switcher-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+.switcher-container {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  background: rgba(30,30,30,0.92);
+  backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 16px;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+  transform: scale(0.9);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#app-switcher.visible .switcher-container {
+  transform: scale(1);
+}
+
+.switcher-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  min-width: 100px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.switcher-item.selected {
+  background: rgba(255,255,255,0.18);
+  transform: scale(1.05);
+}
+
+.switcher-icon {
+  font-size: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.switcher-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.switcher-minimized {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 9px;
+  color: rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+}

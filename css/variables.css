@@ -12,4 +12,5 @@
   --shadow: 0 22px 70px 4px rgba(0,0,0,0.28);
   --r: 12px;
   --font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --dock-icon-size: 52px;
 }

@@ -17,8 +17,8 @@
 }
 
 .di {
-  width: 52px;
-  height: 52px;
+  width: var(--dock-icon-size);
+  height: var(--dock-icon-size);
   border-radius: 12px;
   display: flex;
   align-items: center;
