@@ -23,6 +23,12 @@
 
 <!-- LOGIN -->
 <div id="login">
+  <!-- Top-left header -->
+  <div class="login-header">
+    <span class="login-apple-logo">🍎</span>
+    <img class="login-profile-img" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sanket" alt="Profile">
+  </div>
+
   <div class="ltime" id="ltime"></div>
   <div class="ldate" id="ldate"></div>
   <div class="lav">👤</div>
@@ -36,7 +42,7 @@
   <div id="menubar">
     <span class="apple-logo" onclick="openApp('about')"></span>
     <span class="mi bold" id="activeApp">Finder</span>
-    <span class="mi">File</span><span class="mi">Edit</span><span class="mi">View</span><span class="mi">Window</span><span class="mi">Help</span>
+    <span class="mi" onclick="showMenuDropdown('file', this)">File</span><span class="mi" onclick="showMenuDropdown('edit', this)">Edit</span><span class="mi" onclick="showMenuDropdown('view', this)">View</span><span class="mi" onclick="showMenuDropdown('window', this)">Window</span><span class="mi" onclick="showMenuDropdown('help', this)">Help</span>
     <span class="spacer"></span>
     <div class="mr">
       <span class="mi" onclick="toggleNC()">🔔</span>
@@ -49,6 +55,11 @@
 
   <div class="dicon" style="top:50px;right:20px" ondblclick="openApp('finder')"><span class="ico">💻</span><span class="iname">Macintosh HD</span></div>
   <div class="dicon" style="top:150px;right:20px" ondblclick="openApp('notes')"><span class="ico">📝</span><span class="iname">Notes</span></div>
+
+  <!-- Desktop Shortcuts -->
+  <div class="dicon" style="top:50px;left:20px" ondblclick="openURL('https://github.com/sanketmuchhala')"><span class="ico">🔗</span><span class="iname">GitHub</span></div>
+  <div class="dicon" style="top:150px;left:20px" ondblclick="openURL('https://leetcode.com/u/sanketmuchhala/')"><span class="ico">💻</span><span class="iname">LeetCode</span></div>
+  <div class="dicon" style="top:250px;left:20px" ondblclick="openProjectsFolder()"><span class="ico">📂</span><span class="iname">Projects</span></div>
 
   <div id="wins"></div>
 

@@ -44,3 +44,40 @@
 .lhint { font-size: 12px; opacity: .4; margin-top: 12px; }
 .ltime { position: absolute; top: 55px; font-size: 72px; font-weight: 200; letter-spacing: -2px; }
 .ldate { position: absolute; top: 140px; font-size: 18px; opacity: .8; }
+
+/* Login Header (Apple logo + Profile image) */
+.login-header {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100001;
+}
+
+.login-apple-logo {
+  font-size: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.login-apple-logo:hover {
+  transform: scale(1.1);
+}
+
+.login-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.login-profile-img:hover {
+  transform: scale(1.05);
+  border-color: rgba(255,255,255,0.8);
+}

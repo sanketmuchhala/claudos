@@ -28,17 +28,20 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  background: var(--bg-desktop, linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%));
+  transition: background 0.3s ease;
 }
 
 #desktop::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
+  background: var(--bg-desktop-overlay,
     radial-gradient(ellipse at 30% 40%, rgba(101,78,163,0.5), transparent 60%),
-    radial-gradient(ellipse at 70% 60%, rgba(234,175,200,0.25), transparent 50%);
+    radial-gradient(ellipse at 70% 60%, rgba(234,175,200,0.25), transparent 50%)
+  );
   pointer-events: none;
+  transition: background 0.3s ease;
 }
 
 /* Desktop Icons */

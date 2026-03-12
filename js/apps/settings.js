@@ -174,17 +174,27 @@ function toggleDarkMode(toggle) {
   const enabled = toggle.classList.contains('on');
 
   if (enabled) {
+    // Dark mode styles
     document.documentElement.style.setProperty('--glass', 'rgba(30,30,30,0.75)');
     document.documentElement.style.setProperty('--text', '#f5f5f7');
     document.documentElement.style.setProperty('--text2', '#a1a1a6');
     document.documentElement.style.setProperty('--border', 'rgba(255,255,255,0.2)');
     document.body.style.background = '#000';
+
+    // Dark mode desktop background
+    document.documentElement.style.setProperty('--bg-desktop', 'linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #0f0f0f 100%)');
+    document.documentElement.style.setProperty('--bg-desktop-overlay', 'radial-gradient(ellipse at 30% 40%, rgba(101,78,163,0.25), transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(234,175,200,0.12), transparent 50%)');
   } else {
+    // Light mode styles
     document.documentElement.style.setProperty('--glass', 'rgba(255,255,255,0.72)');
     document.documentElement.style.setProperty('--text', '#1d1d1f');
     document.documentElement.style.setProperty('--text2', '#86868b');
     document.documentElement.style.setProperty('--border', 'rgba(0,0,0,0.1)');
     document.body.style.background = '';
+
+    // Light mode desktop background
+    document.documentElement.style.setProperty('--bg-desktop', 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)');
+    document.documentElement.style.setProperty('--bg-desktop-overlay', 'radial-gradient(ellipse at 30% 40%, rgba(101,78,163,0.5), transparent 60%), radial-gradient(ellipse at 70% 60%, rgba(234,175,200,0.25), transparent 50%)');
   }
 
   const settings = CloudStorage.get('settings', {});
