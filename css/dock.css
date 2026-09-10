@@ -1,66 +1,54 @@
 /* ===== DOCK ===== */
 #dock {
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  padding: 4px 8px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.2);
-  z-index: 9999;
+  position: absolute; left: 50%; bottom: max(8px, env(safe-area-inset-bottom)); z-index: 700;
+  transform: translateX(-50%); font-family: var(--font); user-select: none;
+  transition: transform .3s cubic-bezier(.2, .8, .2, 1);
 }
-
-.di {
-  width: var(--dock-icon-size);
-  height: var(--dock-icon-size);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  cursor: pointer;
-  transition: all .2s cubic-bezier(.4,0,.2,1);
-  position: relative;
+.dock-autohide #dock { transform: translate(-50%, calc(100% + 16px)); }
+.dock-autohide #dock.is-revealed, .dock-autohide #dock.has-menu { transform: translateX(-50%); }
+.dock-tray {
+  display: flex; align-items: flex-end; gap: 2px;
+  height: calc(var(--dock-icon) + 12px); padding: 4px 6px 8px;
+  border: 1px solid #ffffff6b; border-radius: 20px;
+  background: #e6e6e65c; backdrop-filter: blur(28px) saturate(1.35); -webkit-backdrop-filter: blur(28px) saturate(1.35);
+  box-shadow: inset 0 0 0 1px #ffffff0d, 0 5px 20px #0004;
 }
-.di:hover { transform: scale(1.4) translateY(-14px); }
-.di:hover + .di, .di:has(+ .di:hover) { transform: scale(1.15) translateY(-5px); }
-
-.di .tt {
-  position: absolute;
-  top: -32px;
-  background: rgba(30,30,30,0.85);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 11px;
-  white-space: nowrap;
-  opacity: 0;
+:root[data-appearance="light"] .dock-tray { background: rgba(246, 246, 246, .5); border-color: rgba(255, 255, 255, .55); }
+:root[data-contrast="more"] .dock-tray { background: #262626; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.dock-item {
+  --size: var(--dock-icon);
+  position: relative; flex-shrink: 0; width: var(--size); height: var(--size); padding: 0; border: 0; background: none;
+  border-radius: 22%; display: block;
+}
+.dock-icon { position: absolute; inset: 0; display: block; }
+.dock-icon > img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 2px #0004); pointer-events: none; }
+.dock-item:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.dock-item:active .dock-icon { filter: brightness(.7); }
+.dock-dot { position: absolute; left: 50%; bottom: -6px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: #f5f5f5; opacity: 0; transition: opacity .2s; }
+:root[data-appearance="light"] .dock-dot { background: #1d1d1f; }
+.dock-item.is-running .dock-dot { opacity: 1; }
+.dock-badge {
+  position: absolute; top: -3px; right: -5px; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px;
+  background: #ff3b30; color: #fff; font: 600 12px/20px var(--font); text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
   pointer-events: none;
-  transition: opacity .15s;
 }
-.di:hover .tt { opacity: 1; }
+.dock-tip {
+  position: absolute; left: 50%; bottom: calc(100% + 14px); transform: translateX(-50%);
+  padding: 5px 10px; border-radius: 6px; white-space: nowrap; pointer-events: none;
+  background: #303030ed; color: #fff; border: 1px solid #ffffff40; box-shadow: 0 4px 10px #0003; font: 12px/1.2 var(--font);
+  opacity: 0; transition: opacity .1s;
+}
+.dock-item:hover .dock-tip, .dock-item:focus-visible .dock-tip { opacity: 1; }
+#dock.has-menu .dock-tip { opacity: 0; }
+.dock-divider { align-self: stretch; width: 1px; margin: 4px 5px 0; background: #ffffff40; flex-shrink: 0; }
+.dock-trash.is-drop-target .dock-icon { transform: scale(1.18); filter: brightness(1.2); transition: transform .12s; }
 
-.di .dot {
-  position: absolute;
-  bottom: -5px;
-  width: 4px;
-  height: 4px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 50%;
-  display: none;
+/* Calendar icon with today's date, like the macOS Dock */
+.cal-icon {
+  position: absolute; inset: 9.8%; display: grid; grid-template-rows: 30% 1fr; overflow: hidden;
+  border-radius: 22.5%; background: linear-gradient(#ffffff, #f0f0f0); box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 -1px 0 rgba(0, 0, 0, .06);
+  font-family: var(--font-display); text-align: center; container-type: inline-size;
 }
-.di.open .dot { display: block; }
-
-.dock-sep {
-  width: 1px;
-  height: 36px;
-  background: rgba(255,255,255,0.25);
-  margin: 0 4px;
-  align-self: center;
-}
+.cal-icon-month { display: grid; place-items: center; background: linear-gradient(#f45e57, #e8413b); color: #fff; font-weight: 700; font-size: 20cqi; letter-spacing: .02em; line-height: 1; padding-top: 3%; }
+.cal-icon-day { display: grid; place-items: center; color: #2b2b2b; font-weight: 300; font-size: 50cqi; line-height: 1; padding-bottom: 6%; }
+.launchpad-icon .cal-icon, .switcher-icon .cal-icon, .file-icon .cal-icon { position: absolute; }
