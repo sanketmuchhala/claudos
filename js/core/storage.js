@@ -30,7 +30,7 @@
       increaseContrast: false,
       doNotDisturb: false,
       requirePassword: true,
-      openTerminalAtLogin: true,
+      openTerminalAtLogin: false,
       showBatteryPercentage: true,
       soundEffects: false,
       volume: 70,

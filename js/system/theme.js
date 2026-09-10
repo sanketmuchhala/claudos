@@ -45,6 +45,8 @@
   function applyWallpaper() {
     const paper = wallpaper();
     root.style.setProperty('--wallpaper', paper.background);
+    const layer = document.querySelector('.wallpaper-layer');
+    if (layer) layer.style.background = paper.background;
     root.dataset.wallpaper = paper.fog ? 'forest' : 'plain';
   }
 
