@@ -41,7 +41,8 @@ a { color: var(--accent); }
 #desktop-icons { position: absolute; inset: 0; }
 #windows { position: absolute; inset: 0; pointer-events: none; z-index: 2; isolation: isolate; }
 #windows > * { pointer-events: auto; }
-#windows.is-desktop-shown .win { transform: translateY(-110vh) scale(.9); opacity: 0; pointer-events: none; transition: transform .35s cubic-bezier(.4, 0, .2, 1), opacity .3s; }
+#windows .win { transition: transform .35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity .3s; }
+#windows.is-desktop-shown .win { transform: translateY(-110vh) scale(.9); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(0.25, 1, 0.5, 1), opacity .3s; }
 #banners { position: fixed; top: calc(var(--menubar-h) + 8px); right: 10px; z-index: 900; display: grid; gap: 8px; width: min(356px, calc(100vw - 20px)); pointer-events: none; }
 #banners > * { pointer-events: auto; }
 #overlays { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }

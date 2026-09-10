@@ -85,9 +85,9 @@
   width: 262px; padding: 20px 16px 16px; border-radius: 12px; text-align: center;
   background: var(--overlay-glass); backdrop-filter: blur(40px) saturate(1.6); -webkit-backdrop-filter: blur(40px) saturate(1.6);
   box-shadow: 0 20px 60px rgba(0, 0, 0, .45), 0 0 0 1px var(--menu-border);
-  animation: alert-in .2s cubic-bezier(.2, .9, .3, 1.2);
+  animation: alert-in .28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.is-sheet .alert { animation: sheet-in .22s cubic-bezier(.2, .8, .2, 1); }
+.is-sheet .alert { animation: sheet-in .28s cubic-bezier(0.2, 0.9, 0.3, 1.15); }
 .alert-icon { width: 64px; height: 64px; margin: 0 auto 10px; object-fit: contain; border-radius: 14px; }
 .alert-title { font-size: 13px; font-weight: 700; line-height: 1.35; color: var(--text-strong); }
 .alert-message { margin-top: 6px; font-size: 11px; line-height: 1.4; color: var(--text); white-space: pre-line; }
@@ -107,7 +107,7 @@
 .sheet-form {
   width: min(360px, calc(100% - 24px)); padding: 18px 18px 14px; border-radius: 12px; display: grid; gap: 10px;
   background: var(--overlay-glass); backdrop-filter: blur(40px) saturate(1.6); -webkit-backdrop-filter: blur(40px) saturate(1.6);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .45), 0 0 0 1px var(--menu-border); animation: sheet-in .22s cubic-bezier(.2, .8, .2, 1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45), 0 0 0 1px var(--menu-border); animation: sheet-in .28s cubic-bezier(0.2, 0.9, 0.3, 1.15);
 }
 .sheet-form h2 { font-size: 13px; font-weight: 700; color: var(--text-strong); }
 .sheet-form label { display: grid; gap: 4px; font-size: 12px; color: var(--text-2); }

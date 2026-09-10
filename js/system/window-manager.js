@@ -66,7 +66,7 @@
       { left: `${from.x}px`, top: `${from.y}px`, width: `${from.w}px`, height: `${from.h}px` },
       { left: `${rect.x}px`, top: `${rect.y}px`, width: `${rect.w}px`, height: `${rect.h}px` },
     ];
-    const animation = win.el.animate(frames, { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    const animation = win.el.animate(frames, { duration: 350, easing: 'cubic-bezier(0.2, 0.9, 0.3, 1.1)' });
     apply(win);
     animation.onfinish = animation.oncancel = () => { win.el.classList.remove('is-animating'); emitWin(win, 'resize'); done?.(); };
   }
@@ -151,7 +151,7 @@
     el.style.zIndex = ++zTop;
     apply(win);
     layer.appendChild(el);
-    if (motion()) el.animate([{ opacity: 0, transform: 'scale(.955)' }, { opacity: 1, transform: 'none' }], { duration: 200, easing: 'cubic-bezier(.2,.9,.3,1)' });
+    if (motion()) el.animate([{ opacity: 0, transform: 'scale(.85)' }, { opacity: 1, transform: 'none' }], { duration: 250, easing: 'cubic-bezier(.16,1,.3,1)' });
     opts.init?.(win);
     focus(id);
     if (opts.focusContent !== false) requestAnimationFrame(() => focusContent(win));
@@ -218,7 +218,7 @@
       OS.emit('window:close', win);
     };
     if (motion() && !win.minimized && !win.hidden) {
-      const animation = win.el.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.94)' }], { duration: 150, easing: 'ease-in' });
+      const animation = win.el.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.95)' }], { duration: 120, easing: 'cubic-bezier(0.5,0,1,0.5)' });
       animation.onfinish = finish;
     } else finish();
     return true;
@@ -238,12 +238,12 @@
       const frames = genie
         ? [
           { transform: 'none', opacity: 1 },
-          { transform: `translate(${dx * 0.18}px, ${dy * 0.42}px) scale(.7, .86)`, opacity: 0.95, offset: 0.4 },
-          { transform: `translate(${dx}px, ${dy}px) scale(.06, .05)`, opacity: 0.15 },
+          { transform: `translate(${dx * 0.2}px, ${dy * 0.3}px) scale(.6, .85)`, opacity: 0.98, offset: 0.35 },
+          { transform: `translate(${dx}px, ${dy}px) scale(.05, .05)`, opacity: 0 },
         ]
         : [{ transform: 'none', opacity: 1 }, { transform: `translate(${dx}px, ${dy}px) scale(.08)`, opacity: 0 }];
       win.el.style.transformOrigin = '50% 50%';
-      const animation = win.el.animate(frames, { duration: genie ? 430 : 280, easing: 'cubic-bezier(.45,0,.3,1)' });
+      const animation = win.el.animate(frames, { duration: genie ? 450 : 280, easing: genie ? 'cubic-bezier(0.4, 0, 0.2, 1)' : 'cubic-bezier(0.45,0,.3,1)' });
       animation.onfinish = done;
       OS.dock?.pulse(win.app);
     } else done();
@@ -260,7 +260,15 @@
       const r = win.el.getBoundingClientRect();
       const dx = target.left + target.width / 2 - (r.left + r.width / 2);
       const dy = target.top + target.height / 2 - (r.top + r.height / 2);
-      win.el.animate([{ transform: `translate(${dx}px, ${dy}px) scale(.06, .05)`, opacity: 0.2 }, { transform: `translate(${dx * 0.18}px, ${dy * 0.42}px) scale(.7, .86)`, opacity: 0.95, offset: 0.6 }, { transform: 'none', opacity: 1 }], { duration: 380, easing: 'cubic-bezier(.3,0,.2,1)' });
+      const genie = OS.settings.get('minimizeEffect') !== 'scale';
+      const frames = genie
+        ? [
+          { transform: `translate(${dx}px, ${dy}px) scale(.05, .05)`, opacity: 0 },
+          { transform: `translate(${dx * 0.2}px, ${dy * 0.3}px) scale(.6, .85)`, opacity: 0.98, offset: 0.65 },
+          { transform: 'none', opacity: 1 },
+        ]
+        : [{ transform: `translate(${dx}px, ${dy}px) scale(.08)`, opacity: 0 }, { transform: 'none', opacity: 1 }];
+      win.el.animate(frames, { duration: genie ? 450 : 280, easing: genie ? 'cubic-bezier(0.4, 0, 0.2, 1)' : 'cubic-bezier(0.45,0,.3,1)' });
     }
     OS.emit('window:restore', win);
   }
