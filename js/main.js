@@ -21,9 +21,6 @@
   let started = false;
   OS.startSession = () => {
     if (deepLinkApp && !started) OS.apps.launch(deepLinkApp);
-    if (deepLinkView || (!deepLinkApp && OS.settings.get('openTerminalAtLogin'))) {
-      OS.apps.launch('terminal', started ? {} : { initial: Portfolio.session.readViewUrl(window.location.search), primary: true });
-    }
     started = true;
   };
 

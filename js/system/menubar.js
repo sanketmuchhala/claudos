@@ -16,6 +16,7 @@
     wifiOff: '<svg viewBox="0 0 20 16" aria-hidden="true"><path d="M10 13.6a1.5 1.5 0 1 0 0 .01ZM5.9 10.2a5.8 5.8 0 0 1 8.2 0l-1.2 1.2a4.1 4.1 0 0 0-5.8 0Zm-2.7-2.7a9.6 9.6 0 0 1 13.6 0l-1.2 1.2a7.9 7.9 0 0 0-11.2 0ZM.5 4.8a13.4 13.4 0 0 1 19 0l-1.2 1.2a11.7 11.7 0 0 0-16.6 0Z" fill="currentColor" opacity=".35"/><path d="M3 1.5l14 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
     search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m14.2 14.2 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
     control: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="7" r="2" fill="currentColor"/><rect x="3" y="14" width="18" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="17" r="2" fill="currentColor"/></svg>',
+    fullscreen: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V4h4m8 0h4v4M4 16v4h4m8 0h4v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   };
   const batteryIcon = (level, charging) => `<svg viewBox="0 0 30 14" aria-hidden="true"><rect x=".75" y=".75" width="25" height="12.5" rx="3.6" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-width="1.2"/><rect x="2.5" y="2.5" width="${Math.max(1.5, 21.5 * level)}" height="9" rx="2.2" fill="currentColor"/><path d="M27.6 4.8v4.4c.9-.3 1.6-1.2 1.6-2.2s-.7-1.9-1.6-2.2Z" fill="currentColor" fill-opacity=".55"/>${charging ? '<path d="M14.8 2.2 9.6 7.6h3.4l-1.4 4.2 5.2-5.4h-3.4Z" fill="#000" fill-opacity=".75"/>' : ''}</svg>`;
 
@@ -150,6 +151,7 @@
     right = bar.querySelector('.mb-right');
     const portfolio = Portfolio.link('portfolio');
     right.innerHTML = `<a class="mb-link" href="${esc(portfolio?.url || 'https://sanketmuchhala.com/')}" target="_blank" rel="noopener noreferrer">Main portfolio ↗</a>
+      <button type="button" class="mb-status" data-status="fullscreen" aria-label="Toggle Fullscreen" title="Toggle Fullscreen">${ICONS.fullscreen}</button>
       <button type="button" class="mb-status" data-status="battery" hidden></button>
       <button type="button" class="mb-status" data-status="wifi"></button>
       <button type="button" class="mb-status" data-status="spotlight" aria-label="Spotlight" title="Spotlight (${Portfolio.shortcuts.searchShortcutHints().primary})">${ICONS.search}</button>
@@ -188,6 +190,10 @@
       if (kind === 'control') OS.controlCenter.toggle(button);
       if (kind === 'clock') OS.notificationCenter.toggle();
       if (kind === 'wifi' || kind === 'battery') statusMenu(kind, button);
+      if (kind === 'fullscreen') {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+        else document.exitFullscreen().catch(() => {});
+      }
     });
 
     // Auto-hide: reveal when the pointer reaches the top edge.
