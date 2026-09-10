@@ -1,0 +1,125 @@
+/* ===== DESIGN TOKENS =====
+   macOS Sequoia, dark by default (the look of terminal.sanketmuchhala.com),
+   with a complete light palette. The accent color comes from Settings. */
+@font-face {
+  font-family: JetBrains;
+  src: url('../fonts/jetbrains-mono-regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+:root {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Inter, Roboto, Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", Inter, Roboto, Arial, sans-serif;
+  --mono: Menlo, Monaco, "SF Mono", "SFMono-Regular", Consolas, JetBrains, monospace;
+  --accent: #0a84ff;
+  --accent-soft: color-mix(in srgb, var(--accent) 22%, transparent);
+  --accent-strong: color-mix(in srgb, var(--accent) 86%, black);
+  --menubar-h: 28px;
+  --dock-size: 60px;
+  --dock-icon: 60px;
+  --radius-win: 10px;
+  --wallpaper: #0b120f;
+  --display-dim: 0;
+
+  --red: #ff453a;
+  --orange: #ff9f0a;
+  --yellow: #ffd60a;
+  --green: #30d158;
+  --blue: #0a84ff;
+  --purple: #bf5af2;
+  --pink: #ff375f;
+  --gray: #8e8e93;
+
+  /* Dark appearance */
+  color-scheme: dark;
+  --win-bg: #1e1e1e;
+  --win-bg-2: #252527;
+  --win-raised: #2c2c2e;
+  --win-chrome: #2a2a2a;
+  --win-titlebar: linear-gradient(#3c3c3c, #353535);
+  --win-titlebar-inactive: #2c2c2c;
+  --win-sidebar: rgba(46, 46, 48, .78);
+  --win-sidebar-solid: #2b2b2d;
+  --win-border: rgba(255, 255, 255, .16);
+  --win-shadow: 0 24px 70px rgba(0, 0, 0, .5), 0 8px 24px rgba(0, 0, 0, .34), 0 0 0 1px rgba(0, 0, 0, .55);
+  --text: rgba(255, 255, 255, .88);
+  --text-strong: #fff;
+  --text-2: rgba(235, 235, 245, .6);
+  --text-3: rgba(235, 235, 245, .34);
+  --separator: rgba(255, 255, 255, .1);
+  --hairline: rgba(255, 255, 255, .07);
+  --fill: rgba(255, 255, 255, .07);
+  --fill-2: rgba(255, 255, 255, .12);
+  --fill-hover: rgba(255, 255, 255, .1);
+  --selection-idle: rgba(255, 255, 255, .1);
+  --input-bg: rgba(255, 255, 255, .06);
+  --input-border: rgba(255, 255, 255, .12);
+  --push-bg: #58585a;
+  --push-bg-hover: #6a6a6c;
+  --push-text: #fff;
+  --card: rgba(255, 255, 255, .05);
+  --menu-bg: rgba(40, 40, 42, .86);
+  --menu-border: rgba(255, 255, 255, .17);
+  --menu-text: #f5f5f7;
+  --menu-text-2: rgba(235, 235, 245, .5);
+  --menu-hover: color-mix(in srgb, var(--accent) 84%, #0b2a55);
+  --overlay-glass: rgba(34, 34, 36, .84);
+  --banner-bg: rgba(44, 44, 46, .82);
+  --scrollbar: rgba(255, 255, 255, .22);
+}
+
+:root[data-appearance="light"] {
+  color-scheme: light;
+  --win-bg: #ffffff;
+  --win-bg-2: #f6f6f7;
+  --win-raised: #ffffff;
+  --win-chrome: #f3f3f3;
+  --win-titlebar: linear-gradient(#ececec, #e3e3e3);
+  --win-titlebar-inactive: #f3f3f3;
+  --win-sidebar: rgba(234, 234, 236, .78);
+  --win-sidebar-solid: #ececee;
+  --win-border: rgba(0, 0, 0, .14);
+  --win-shadow: 0 24px 70px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .16), 0 0 0 .5px rgba(0, 0, 0, .3);
+  --text: rgba(0, 0, 0, .85);
+  --text-strong: #000;
+  --text-2: rgba(60, 60, 67, .62);
+  --text-3: rgba(60, 60, 67, .34);
+  --separator: rgba(0, 0, 0, .1);
+  --hairline: rgba(0, 0, 0, .06);
+  --fill: rgba(0, 0, 0, .05);
+  --fill-2: rgba(0, 0, 0, .08);
+  --fill-hover: rgba(0, 0, 0, .06);
+  --selection-idle: rgba(0, 0, 0, .09);
+  --input-bg: rgba(255, 255, 255, .9);
+  --input-border: rgba(0, 0, 0, .14);
+  --push-bg: #ffffff;
+  --push-bg-hover: #f1f1f1;
+  --push-text: rgba(0, 0, 0, .85);
+  --card: rgba(0, 0, 0, .035);
+  --menu-bg: rgba(242, 242, 243, .86);
+  --menu-border: rgba(0, 0, 0, .14);
+  --menu-text: #1d1d1f;
+  --menu-text-2: rgba(60, 60, 67, .5);
+  --menu-hover: var(--accent);
+  --overlay-glass: rgba(246, 246, 247, .86);
+  --banner-bg: rgba(246, 246, 247, .84);
+  --scrollbar: rgba(0, 0, 0, .25);
+}
+
+:root[data-contrast="more"] {
+  --win-border: rgba(255, 255, 255, .34);
+  --separator: rgba(255, 255, 255, .22);
+  --text-2: rgba(235, 235, 245, .78);
+  --menu-bg: #262626;
+  --overlay-glass: #262626;
+  --banner-bg: #2c2c2e;
+}
+:root[data-contrast="more"][data-appearance="light"] {
+  --win-border: rgba(0, 0, 0, .4);
+  --separator: rgba(0, 0, 0, .25);
+  --text-2: rgba(0, 0, 0, .7);
+  --menu-bg: #f2f2f2;
+  --overlay-glass: #f2f2f2;
+  --banner-bg: #f2f2f2;
+}
